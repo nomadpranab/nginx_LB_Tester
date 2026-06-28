@@ -42,18 +42,18 @@ jobs:
           file: ./lb/Dockerfile
           push: true
           tags: pranab7015/nginx_lb:latest
-deploy:
-  needs: build-and-push
-  runs-on: ubuntu-latest
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Deploy to Ubuntu VM
-      uses: appleboy/ssh-action@v1.2.0
-      with:
-        host: ${{ secrets.VM_HOST }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_SSH_KEY }}
-        script: |
-          cd ~/nginx_lb_test
-          docker compose pull
-          docker compose up -d
+    steps:
+      - name: Deploy to Ubuntu VM
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd ~/nginx_lb_test
+            docker compose pull
+            docker compose up -d
