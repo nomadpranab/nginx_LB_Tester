@@ -1,0 +1,2 @@
+docker build -t pranab7015/nginx_frontend:latest .
+docker build -t pranab7015/nginx_lb:latest -f lb/Dockerfile lb
